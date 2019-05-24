@@ -5,10 +5,8 @@ import org.springframework.util.StringUtils;
 import javax.lang.model.element.AnnotationMirror;
 import javax.lang.model.element.Element;
 import javax.persistence.Column;
-import javax.persistence.Id;
 import java.io.IOException;
 import java.io.Writer;
-import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 import java.util.List;
 

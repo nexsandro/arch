@@ -20,9 +20,10 @@
                 <configuration>
                     <source>8</source>
                     <target>8</target>
-                    <annotationProcessors>
-                        <annotationProcessor>com.jlabs.processor.HtmlGenerator</annotationProcessor>
-                    </annotationProcessors>
+                    <encoding>UTF-8</encoding>
+                    <!--
+                    Annotation processor registered in META-INF/services/javax.annotation.processing.Processor text file
+                    -->
                 </configuration>
             </plugin>
         </plugins>
