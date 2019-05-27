@@ -1,15 +1,14 @@
 package com.jlabs.processor.view;
 
+import com.jlabs.processor.view.generator.HtmlGeneratorEntityListener;
 import com.jlabs.processor.view.model.Model;
 import com.jlabs.processor.view.model.ModelReaderEntityVisitor;
 
-import javax.annotation.processing.AbstractProcessor;
-import javax.annotation.processing.RoundEnvironment;
-import javax.annotation.processing.SupportedAnnotationTypes;
-import javax.annotation.processing.SupportedSourceVersion;
+import javax.annotation.processing.*;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
+import java.io.IOException;
 import java.util.Set;
 
 @SupportedSourceVersion(SourceVersion.RELEASE_8)
@@ -18,6 +17,8 @@ import java.util.Set;
 )
 public class ModelReader extends AbstractProcessor {
 
+
+    private ProcessingEnvironment processingEnv;
 
     @Override
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
@@ -31,8 +32,26 @@ public class ModelReader extends AbstractProcessor {
             rootElement.accept(visitor, model);
         }
 
-        System.out.println(model);
+        // TODO: Serialize model to further processing.
+
+        // Sample further processing
+        // .. model = loadFromModel(modelSerialized)
+
+        try {
+
+            HtmlGeneratorEntityListener listener = new HtmlGeneratorEntityListener(processingEnv.getFiler(), new PropertyRenderFactory());
+            model.processEntities(listener);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
         return true;
+    }
+
+    @Override
+    public synchronized void init(ProcessingEnvironment processingEnv) {
+        this.processingEnv = processingEnv;
+        super.init(processingEnv);
     }
 }

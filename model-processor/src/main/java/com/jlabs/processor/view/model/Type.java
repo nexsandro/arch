@@ -49,9 +49,9 @@ public class Type {
 
     @Override
     public String toString() {
-        return "Type{" +
-                "name='" + name + '\'' +
-                ", innerType='" + innerType + '\'' +
-                '}';
+        return "{\"Type\": {" +
+                "\"name\": '" + name + '\'' +
+                ", \"innerType\": '" + innerType + '\'' +
+                "}}";
     }
 }

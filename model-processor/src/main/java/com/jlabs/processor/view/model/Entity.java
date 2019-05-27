@@ -6,13 +6,16 @@ import java.util.Set;
 
 public class Entity {
 
+    private Model model;
+
     private Type type;
 
     private Type parent;
 
     private Set<Field> fields;
 
-    public Entity(String entityName) {
+    public Entity(Model model, String entityName) {
+        this.model = model;
         this.type = new Type(entityName);
         this.fields = new HashSet<>();
     }
@@ -68,10 +71,10 @@ public class Entity {
 
     @Override
     public String toString() {
-        return "Entity{" +
-                "type=" + type +
-                ", parent=" + parent +
-                ", fields=" + fields +
-                '}';
+        return "{\"Entity\":{" +
+                "\"type\": " + type +
+                ", \"parent\": " + parent +
+                ", \"fields\": " + fields +
+                "}}";
     }
 }
